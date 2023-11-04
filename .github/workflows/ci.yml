@@ -42,11 +42,11 @@ jobs:
     - name: Check out code into the Go module directory
       uses: actions/checkout@v3
     
-    - name: Install Migrate
-      run: curl -L -o /usr/local/bin/migrate https://github.com/golang-migrate/migrate/releases/download/v4.15.0/migrate.linux-amd64 && chmod +x /usr/local/bin/migrate
-    
-    - name: Add migrate to PATH
-      run: echo 'export PATH=$PATH:/usr/local/bin' >> $GITHUB_ENV
+    - name: Install golang-migrate
+      run: |
+        curl -L https://github.com/golang-migrate/migrate/releases/download/v4.12.2/migrate.linux-amd64.tar.gz | tar xvz
+        sudo mv migrate.linux-amd64 /usr/local/bin/
+        which migrate
 
     - name: Run migrations
       run: make migrateup
