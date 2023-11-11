@@ -24,3 +24,5 @@ go.work
 .vscode
 
 app.env
+
+*.env
