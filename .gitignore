@@ -22,7 +22,3 @@ go.work
 
 # vs code
 .vscode
-
-app.env
-
-*.env
