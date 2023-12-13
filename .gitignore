@@ -22,3 +22,5 @@ go.work
 
 # vs code
 .vscode
+
+*.log
