@@ -55,3 +55,7 @@ jobs:
           kubectl apply -f eks/service.yaml
           kubectl apply -f eks/issuer.yaml
           kubectl apply -f eks/ingress.yaml
+
+      - name: Update Deployment Image
+        run: |
+          kubectl set image deployment/simple-bank-api-deployment simple-bank-api=445412788634.dkr.ecr.us-east-1.amazonaws.com/simplebank:${{ github.sha }}
