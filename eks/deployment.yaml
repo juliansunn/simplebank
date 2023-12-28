@@ -20,3 +20,8 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
+          env:
+            - name: ACCESS_TOKEN_DURATION
+              value: "15m"
+            - name: REFRESH_TOKEN_DURATION
+              value: "24h"
