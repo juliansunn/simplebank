@@ -25,3 +25,7 @@ spec:
               value: "15m"
             - name: REFRESH_TOKEN_DURATION
               value: "24h"
+            - name: HTTP_SERVER_ADDRESS
+              value: 0.0.0.0:8080
+            - name: GRPC_SERVER_ADDRESS
+              value: 0.0.0.0:9090
