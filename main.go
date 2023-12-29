@@ -31,9 +31,9 @@ func main() {
 		log.Fatal("cannot connect to db: ", err)
 	}
 	store := db.NewStore(conn)
-	// go runGatewayServer(config, store)
-	// runGrpcServer(config, store)
-	runGinServer(config, store)
+	go runGatewayServer(config, store)
+	runGrpcServer(config, store)
+	// go runGinServer(config, store)
 
 }
 
@@ -109,7 +109,7 @@ func runGinServer(config util.Config, store db.Store) {
 		log.Fatal("cannot create server: ", err)
 	}
 
-	err = server.Start("0.0.0.0:8080")
+	err = server.Start(config.HttpServerAddress)
 	if err != nil {
 		log.Fatal("cannot start server: ", err)
 	}
