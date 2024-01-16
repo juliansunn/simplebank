@@ -16,6 +16,21 @@ const (
 	authorizationPayloadKey = "authorization_payload"
 )
 
+// authMiddleware is a function that returns a Gin middleware function for handling authentication.
+//
+// It takes a tokenMaker as a parameter, which is responsible for creating and verifying tokens.
+//
+// The middleware function performs the following steps:
+// - Retrieves the authorization header from the request context.
+// - Checks if the authorization header is provided. If not, it aborts the request with an unauthorized status and an error response.
+// - Parses the authorization header and checks if it has the correct format. If not, it aborts the request with an unauthorized status and an error response.
+// - Extracts the authorization type from the parsed header and checks if it is supported. If not, it aborts the request with an unauthorized status and an error response.
+// - Extracts the access token from the parsed header.
+// - Verifies the access token using the tokenMaker. If the verification fails, it aborts the request with an unauthorized status and an error response.
+// - Sets the authorization payload in the request context.
+// - Calls the next handler in the chain.
+//
+// The middleware function does not have any return types.
 func authMiddleware(tokenMaker token.Maker) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		authorizationHeader := ctx.GetHeader(authorizationHeaderKey)
