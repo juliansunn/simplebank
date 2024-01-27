@@ -58,7 +58,7 @@ func (server *Server) createTransfer(ctx *gin.Context) {
 func (server *Server) validAccount(ctx *gin.Context, id int64, currency string) (db.Account, bool) {
 	account, err := server.store.GetAccount(ctx, id)
 	if err != nil {
-		if err == db.ErrRecordNotFound {
+		if errors.Is(err, db.ErrRecordNotFound) {
 			ctx.JSON(http.StatusNotFound, errorResponse(err))
 			return account, false
 		}

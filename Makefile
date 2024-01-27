@@ -60,4 +60,4 @@ evans:
 redis:
 	docker run --name redis -p 6379:6379 -d redis:7-alpine
 
-.PHONY: postgres createdb dropdb migrateup  migrateup1 migratedown migratedown1 sqlc test server mock db_docs db_schema proto evans  redis new_migration
+.PHONY: postgres createdb dropdb migrateup  migrateup1 migratedown migratedown1 sqlc test parse_test_output server mock db_docs db_schema proto evans  redis new_migration
