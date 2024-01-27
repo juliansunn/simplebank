@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"net"
 	"net/http"
 	"os"
@@ -94,7 +95,8 @@ func runGrpcServer(config util.Config, store db.Store, taskDistributor worker.Ta
 	pb.RegisterSimpleBankServer(grpcServer, server)
 	reflection.Register(grpcServer)
 
-	listener, err := net.Listen("tcp", "localhost:9090")
+	fmt.Printf("Starting gRPC server at %s\n", config.GRPCServerAddress)
+	listener, err := net.Listen("tcp", config.GRPCServerAddress)
 	if err != nil {
 		log.Fatal().Msg("cannot create listener: ")
 	}
